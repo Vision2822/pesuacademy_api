@@ -30,6 +30,10 @@ App runs on: **http://127.0.0.1:5000**
 | `/api/all_data` | GET | Returns attendance / timetable / calendar |
 | `/api/logout` | GET | Ends session |
 
+Example:
+```bash
+curl -X POST http://127.0.0.1:5000/api/login -d "username=SRN" -d "password=PASS"
+```
 ### 📤 Response Data Overview
 
 - **`/api/login`** →  
@@ -91,11 +95,6 @@ App runs on: **http://127.0.0.1:5000**
   ```
 
 ---
-
-Example:
-```bash
-curl -X POST http://127.0.0.1:5000/api/login -d "username=SRN" -d "password=PASS"
-```
 
 
 ## 🛠 Environment Variables
