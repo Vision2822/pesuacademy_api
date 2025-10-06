@@ -30,10 +30,74 @@ App runs on: **http://127.0.0.1:5000**
 | `/api/all_data` | GET | Returns attendance / timetable / calendar |
 | `/api/logout` | GET | Ends session |
 
+### 📤 Response Data Overview
+
+- **`/api/login`** →  
+  ```json
+  {
+    "success": true
+  }
+  ```
+  If login fails, returns:
+  ```json
+  {
+    "success": false,
+    "error": "Invalid credentials"
+  }
+  ```
+
+- **`/api/all_data`** →  
+  ```json
+  {
+    "success": true,
+    "student_name": "John Doe",
+    "attendance": [
+      {
+        "code": "CS101",
+        "name": "Data Structures",
+        "attended": 38,
+        "total": 42,
+        "percentage": 90
+      }
+    ],
+    "semesters": [
+      { "id": "1671", "name": "Semester 3" }
+    ],
+    "calendar": {
+      "events": [...]
+    },
+    "timetable": {
+      "CS101": {
+        "name": "Data Structures",
+        "schedule": {
+          "Monday": ["9:00 - 10:00"],
+          "Wednesday": ["11:00 - 12:00"]
+        }
+      }
+    }
+  }
+  ```
+  If session expired or login failed:
+  ```json
+  {
+    "success": false,
+    "error": "Not logged in"
+  }
+  ```
+
+- **`/api/logout`** →  
+  ```json
+  { "success": true }
+  ```
+
+---
+
 Example:
 ```bash
 curl -X POST http://127.0.0.1:5000/api/login -d "username=SRN" -d "password=PASS"
 ```
+
+
 ## 🛠 Environment Variables
 `FLASK_SECRET_KEY=<your-secret-key>`
 
